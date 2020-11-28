@@ -142,14 +142,14 @@ class Crab_OK (crab):
                 if self.GenTXT :
                     DPL.toTXT()
                     self.GenTXT = 'no'
-            msg = '{},已增加連結\n'.format(self.Sec['Name'])
-            msgs = ['[新連結{}]({})\n'.format(i+1,x) for (i,x) in enumerate(_uris[_indexNew : ])]
+            msg = '{},已增加連結'.format(self.Sec['Name'])
+            msgs = ['[新連結{}]({})'.format(i+1,x) for (i,x) in enumerate(_uris[_indexNew : ])]
             self.Sec['check word'] = ep     
             self.Sec['Last Update'] = self.chk_date
             self.Sec['Last Uri'] = _uris[-1]
-            self.logging ('\t'+msg)
-            crab.MSG.logging(msg)
-            crab.MSG.logging(msgs) if self.ShowLink else None
+            self.logging ('\t'+msg+'\n')
+            self.notify(msg)
+            [self.notify(x) for x in msgs] if self.ShowLink else None
             if 'DL Path' in [x for x in self.Sec.keys()]:
             #if crab.Config.has_option(self.secName,'DL Path'):
                 if self.Sec['DL Path'] != '':
